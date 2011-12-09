@@ -50,7 +50,7 @@ $.widget("ech.multiselect", {
 		this._isOpen = false; // assume no
 	
 		var 
-			button = (this.button = $('<button type="button"><span class="ui-icon ui-icon-triangle-2-n-s"></span></button>'))
+			button = (this.button = $('<div class="ui-multiselect-button"><span class="ui-icon ui-icon-triangle-2-n-s"></span></div>'))
 				.addClass('ui-multiselect ui-widget ui-state-default ui-corner-all')
 				.addClass( o.classes )
 				.attr({ 'title':el.attr('title'), 'aria-haspopup':true, 'tabIndex':el.attr('tabIndex') })
