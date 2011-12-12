@@ -54,7 +54,8 @@ $.widget("ech.multiselect", {
 				.addClass('ui-multiselect ui-widget ui-state-default ui-corner-all')
 				.addClass( o.classes )
 				.attr({ 'title':el.attr('title'), 'aria-haspopup':true, 'tabIndex':el.attr('tabIndex') })
-				.insertAfter( el ),
+				.insertAfter( el )
+				.data('multiselect', this),
 			
 			buttonlabel = (this.buttonlabel = $('<span />'))
 				.html( o.noneSelectedText )
