@@ -374,12 +374,22 @@ $.widget("ech.multiselect", {
 					self.close();
 				}
 
+				// update the model (the select box)
+				var option = self.element.find('option[value="'+val+'"]');
+				checked && option.attr('selected', 'selected') || option.removeAttr('selected');
+
 				// fire change on the select box
 				self.element.trigger("change");
 				
 				// setTimeout is to fix multiselect issue #14 and #47. caused by jQuery issue #3827
 				// http://bugs.jquery.com/ticket/3827 
 				setTimeout($.proxy(self.update, self), 10);
+			});
+
+		this.element
+			.on('change', 'option', function( e ) {
+				var input = self.menu.find('input[value="'+$(this).attr('value')+'"]');
+				$(this).attr('selected') && input.attr('checked', 'checked') || input.removeAttr('checked');
 			});
 
 		// close each widget when clicking on any other element/anywhere else on the page
@@ -491,6 +501,10 @@ $.widget("ech.multiselect", {
 			.each(function(){
 				if( !this.disabled && $.inArray(this.value, values) > -1 ){
 					self._toggleState('selected', flag).call( this );
+
+					// update the model (the select box)
+					var option = self.element.find('option[value="'+this.value+'"]');
+					flag && option.attr('selected', 'selected') || option.removeAttr('selected');
 				}
 			});
 
